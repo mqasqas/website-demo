@@ -56,7 +56,7 @@
   #scene.dragging{ cursor:grabbing; }
   #scene.dimmed{ opacity:.14; filter:blur(2px); }
 
-  /* ---------- Title block (drafting corner) ---------- */
+  
   #titleblock{
     position:fixed; top:28px; left:28px; z-index:5;
     font-family:'Doto', monospace;
@@ -74,7 +74,7 @@
     margin-top:4px; text-transform:uppercase;
   }
 
-  /* ---------- Bottom caption ---------- */
+  
   #caption{
     position:fixed; bottom:30px; left:50%; transform:translateX(-50%);
     font-family:'Doto', monospace; font-size:11px;
@@ -88,7 +88,7 @@
 
   .fade-hide{ opacity:0 !important; pointer-events:none; }
 
-  /* ---------- Face labels ---------- */
+  
   .face-label{
     position:fixed; top:0; left:0; z-index:4;
     font-family:'Doto', monospace; font-size:11px; letter-spacing:.08em;
@@ -100,7 +100,7 @@
   }
   .face-label.hover{ color:var(--amber); border-color:var(--amber); background:rgba(255,255,255,.12); }
 
-  /* ---------- Dim backdrop when a section is open ---------- */
+  
   #dim{
     position:fixed; inset:0; z-index:3;
     background:radial-gradient(ellipse at center, rgba(8,20,40,.2), var(--bg-deep) 85%);
@@ -108,7 +108,7 @@
   }
   #dim.on{ opacity:1; }
 
-  /* ---------- Section panels ---------- */
+  
   #sections{ position:fixed; inset:0; z-index:6; pointer-events:none; }
   .panel{
     position:absolute; inset:0;
@@ -146,7 +146,6 @@
 
   .divider{ height:1px; background:linear-gradient(90deg,var(--cyan),transparent); margin:26px 0; opacity:.4; }
 
-  /* About */
   .contact-row{ display:flex; gap:14px; flex-wrap:wrap; margin-top:6px; }
   .contact-row a{
     font-family:'Doto', monospace; font-size:12px; color:var(--cyan);
@@ -160,7 +159,6 @@
     padding:12px 20px; border-radius:2px; font-weight:600; text-transform:uppercase;
   }
 
-  /* Skills */
   .skill-group{ margin-bottom:22px; }
   .skill-group h3{
     font-family:'Doto', monospace; font-size:11px; letter-spacing:.1em;
@@ -173,7 +171,6 @@
     border:1px solid var(--line); padding:6px 12px; border-radius:2px;
   }
 
-  /* Experience */
   .exp-card{ border-left:2px solid var(--cyan); padding-left:18px; margin-bottom:8px; }
   .exp-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; }
   .exp-role{ font-family:'Doto', monospace; font-size:17px; font-weight:600; }
@@ -185,7 +182,6 @@
     border:1px dashed var(--ink-faint); padding:10px 14px; border-radius:2px; line-height:1.6;
   }
 
-  /* Projects */
   .proj-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   @media (max-width:560px){ .proj-grid{ grid-template-columns:1fr; } }
   .proj-card{
@@ -236,13 +232,13 @@
         where the work centers on optical and thermal characterization of OLED displays and
         building out data-acquisition systems for a multi-supplier luminance degradation study.
         Outside of coursework, most weekends go toward hands-on builds — amplifiers, PCBs,
-        motor controllers, anything that involves a soldering iron and a bit of stubbornness.
+        motor controllers, anything that involves a soldering iron and a bit of tenacity.
       </p>
       <a class="dl-btn" href="#">Download Résumé (PDF)</a>
       <div class="divider"></div>
       <div class="contact-row">
-        <a href="mailto:you@example.com">EMAIL →</a>
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GITHUB →</a>
+        <a href="mailto:mqasqasbashar@gmail.com">EMAIL →</a>
+        <a href="https://github.com/mqasqas" target="_blank" rel="noopener">GITHUB →</a>
       </div>
       <div class="placeholder-note">
         Placeholder copy — swap in your finalized bio, résumé file, and real contact links.
@@ -370,7 +366,6 @@
   camera.position.set(0,0,HOME_DIST);
   camera.lookAt(0,0,0);
 
-  // ---------- Build tetrahedron with 4 addressable faces ----------
   const verts = [
     new THREE.Vector3( 1, 1, 1),
     new THREE.Vector3(-1,-1, 1),
@@ -418,7 +413,6 @@
   pyramidGroup.rotation.set(0.5, 0.7, 0);
   scene.add(pyramidGroup);
 
-  // ---------- Face labels (HTML overlay) ----------
   const labelEls = labels.map((text) => {
     const el = document.createElement('div');
     el.className = 'face-label';
@@ -447,7 +441,6 @@
     });
   }
 
-  // ---------- Interaction state ----------
   let isDown = false, moved = false, lastX = 0, lastY = 0;
   let velX = 0, velY = 0;
   let hoveredFace = null;
@@ -509,7 +502,6 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
-  // ---------- Camera zoom transition ----------
   let camAnim = null; // {from, to, start, dur}
   function animateCamera(to, dur, onDone){
     camAnim = { from: camera.position.clone(), to: to.clone(), start: performance.now(), dur, onDone };
@@ -525,7 +517,6 @@
     if (t >= 1){ const done = camAnim.onDone; camAnim = null; if (done) done(); }
   }
 
-  // ---------- Section open/close ----------
   const dim = document.getElementById('dim');
   const backBtn = document.getElementById('backBtn');
   const panels = [0,1,2,3].map(i => document.getElementById('panel-'+i));
@@ -703,7 +694,6 @@
   }
   backBtn.addEventListener('click', closeSection);
 
-  // ---------- Main loop ----------
   function animate(now){
     requestAnimationFrame(animate);
     if (homeActive && !isDown){
